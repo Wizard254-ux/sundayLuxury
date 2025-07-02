@@ -40,7 +40,7 @@ app.use('/services', ServiceRouter);
 app.use('/appointments', AppointmentRouter);
 app.use('/stats', StatsRouter);
 app.use('/admin', AdminRouter);
-app.get('/health/check/',(req,res){
+app.get('/health/check/',(req,res)=>{
         res.status(200).json({"message":"Server is healthy"})
 })
 
