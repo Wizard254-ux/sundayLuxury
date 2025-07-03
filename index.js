@@ -24,12 +24,24 @@ if (!MONGO_URI) {
   console.error(' MONGO_URI is not defined in .env');
   process.exit(1);
 }
+const allowedOriginPrefix=process.env.CLIENT_URL
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow non-browser tools like Postman
+    if (origin.startsWith(allowedOriginPrefix)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
 
 // Middleware
-app.use(cors({
-  origin: [process.env.CLIENT_URL],
-  credentials: true
-}));
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
