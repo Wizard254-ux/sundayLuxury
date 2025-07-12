@@ -126,7 +126,6 @@ const sendCancellationEmail = async (appointment) => {
             <p style="color: #666; font-size: 14px;">
               Best regards,<br>
               <strong>${process.env.MAIL_SENDER_NAME || 'Project Manager Firm'}</strong><br>
-              📧 ${process.env.MAIL_USERNAME || 'cu.kibabiiuniversity@gmail.com'}
             </p>
           </div>
         </div>
